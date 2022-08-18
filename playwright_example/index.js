@@ -1,6 +1,9 @@
 // this example uses chromium. you may also use 'webkit' or 'firefox'
 const chromium = require("playwright").chromium;
 
+let url = new URL(process.argv[2]);
+let filename = `${url.hostname}.png`;
+
 (async () => {
   // launch a chromium instance
   const browser = await chromium.launch();
@@ -10,10 +13,10 @@ const chromium = require("playwright").chromium;
   const page = await context.newPage();
 
   // navigate to your url
-  await page.goto("https://www.urlbox.io");
+  await page.goto(url);
 
   // take the screenshot
-  await page.screenshot({ path: "screenshot.png" });
+  await page.screenshot({ path: filename });
 
   // close the chromium instance
   await browser.close();
