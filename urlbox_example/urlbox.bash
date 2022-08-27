@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
+api="https://api.urlbox.io/v1/HRjqIgpbm1BoGJgY/png"
 url="$1"
 filename="$2"
 
-curl --silent "${url}" --output "${filename}"
+composed_url="${api}?url=${url}"
+
+curl "${composed_url}" --output "${filename}"
 
 # urls
 # page screenshot: "https://api.urlbox.io/v1/DVfOxRT0urbFc6z1/png?url=https%3A%2F%2Ftechcrunch.com"

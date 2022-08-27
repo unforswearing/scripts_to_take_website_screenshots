@@ -13,11 +13,11 @@ let filename = `${url.hostname}.png`;
   const page = await context.newPage();
 
   // navigate to your url
-  await page.goto(url);
-
-  // take the screenshot
-  await page.screenshot({ path: filename });
-
-  // close the chromium instance
-  await browser.close();
+  await page.goto(url.href.toString());
+  await page.waitForEvent("requestfinished").then(async () => {
+    // take the screenshot
+    await page.screenshot({ path: filename });
+    // close the chromium instance
+    await browser.close();
+  });
 })();
